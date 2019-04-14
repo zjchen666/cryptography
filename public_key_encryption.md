@@ -19,4 +19,4 @@
 2. key = HASH(x)
 3. D(key, E(k,m))
 
-__注意避免 textbook RSA（直接对m进行RSA加解密)__
+__注意避免 textbook RSA（直接对m进行RSA加解密) 会被meet in the middle 攻击__
