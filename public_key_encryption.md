@@ -20,3 +20,6 @@
 3. D(key, E(k,m))
 
 __注意避免 textbook RSA（直接对m进行RSA加解密) 会被meet in the middle 攻击__
+
+## diffe-hellman 
+
