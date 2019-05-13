@@ -1,3 +1,9 @@
+## AES:
+ 1. Byte Sub
+ 2. Shift rows
+ 3. Mix Columns
+ 4. Xor Key
+
 ## CBC
 CBC attacks:
 1. bit flipping attack
