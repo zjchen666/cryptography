@@ -2,8 +2,8 @@
 
 ## RSA permutation -  用于加密key
 
-1. 选取 p 和 q 两个质数， p*q = N
-2. 选取 e 和 d， 要求 e * d = 1（mod φ(n)）
+1. 选取 p 和 q 两个质数， p*q = N， φ(N) = （p-1) * (q - 1）
+2. 选取 e 和 d， 要求 e * d = k * φ(N) + 1
 3. 公钥：pk =（N，e）, 私钥：sk = (N, d)
 4. 加密: RSA（x）= x^e
 5. 解密：x^e*d = x^(k * φ(n) + 1) = x
