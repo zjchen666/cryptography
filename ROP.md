@@ -5,3 +5,6 @@ https://github.com/slimm609/checksec.sh
 
 # pattern.py:
 https://github.com/Svenito/exploit-pattern
+
+# MSF
+https://github.com/g0tmi1k/msfpc
