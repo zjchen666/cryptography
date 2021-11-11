@@ -51,7 +51,7 @@ p.interactive()
 
 ```
 ## ret2libc
-```
+``` python
 #!/usr/bin/env python3
 from pwn import *
 import binascii
