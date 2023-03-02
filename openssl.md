@@ -3,6 +3,9 @@ Check a certificate and return information about it (signing authority, expirati
 
 openssl x509 -in server.crt -text -noout
 
+### Check a x509 Cert chain
+openssl storeutl -noout -text -certs ca_chain
+
 ### Check a key
 Check the SSL key and verify the consistency:
 
