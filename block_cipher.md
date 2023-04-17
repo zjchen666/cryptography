@@ -46,7 +46,7 @@ static const uint8_t sbox[256] = {
 CBC attacks:
 1. bit flipping attack
 2. padding oracle attack
-https://www.mi1k7ea.com/2020/09/17/%E6%B5%85%E6%9E%90CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB%E4%B8%8EPadding-Oracle-Attack/
+https://www.mi1k7ea.com/2020/09/17/%E6%B5%85%E6%9E%90CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB%E4%B8%8EPadding-Oracle-Attack/. 
 __prerequists:__
 1. A target ciphertext and IV to decrypt.
 2. A padding oracle: a function that takes ciphertexts and tells the attacker if the padding was correct  
