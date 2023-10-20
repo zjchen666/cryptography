@@ -1,3 +1,5 @@
+-fno-stack-protector和-z execstack这两个参数会分别关掉DEP和Stack Protector。
+
 https://segmentfault.com/a/1190000005888964
 http://peckerwood.top/post/rop_0x01/
 ### checksec
