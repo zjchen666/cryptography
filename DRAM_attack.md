@@ -1,1 +1,5 @@
-Rowhammer, RAMbleed, and cold-boot attacks
+
+## Rowhammer, RAMbleed, and cold-boot attacks
+_Rowhammer_ Attackers who employ a Rowhammer strategy have the intention of modifying or corrupting data. Rowhammer attacks read data in a memory row repeatedly at high speed, causing it to flip the bits (from 1 to 0 or 0 to 1) in the page table entries of adjacent rows. In this way, attackers can gain read-write access to the entire physical memory, according to the Project Zero team at Google. As DRAM chips continue to shrink, they become even more vulnerable to this type of attack because transistors are packed more densely together, increasing the risk of spillover during such an attack.
+_RAMBleed_ RAMBleed is used for stealing data as it moves across systems. RAMBleed uses the same principles as the Rowhammer attack but it reads the information instead of modifying it, threatening the confidentiality of the data stored in memory. By using RAMBleed, attackers can extract information from the DRAM.
+_Cold-boot Attacks_. Attackers in this case have physical access to your system. They can use their access to do a hard reset on a specific system, access pre-boot physical memory data to retrieve encryption keys, and wreak havoc.
