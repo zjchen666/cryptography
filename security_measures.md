@@ -20,4 +20,7 @@
     distributions.  
     _Executable and Linkable Format (ELF)_: When a program is compiled, the ELF headers can specify that the stack should be non-executable. This is often the default 
     behavior unless explicitly overridden.  The "-z noexecstack" linker option modifies the ELF headers to include a note that the stack should be non-executable.  
-    _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.  
+    _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.
+
+## References:
+https://wiki.ubuntu.com/Security/Features/Historical
