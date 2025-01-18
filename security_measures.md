@@ -27,5 +27,16 @@ When attackers try to develop "run anywhere" exploits for kernel vulnerabilities
 8. ### Dmesg restrictions  
 When attackers try to develop "run anywhere" exploits for vulnerabilties, they frequently will use dmesg output. By treating dmesg output as sensitive information, this output is not available to the attacker. Starting with Ubuntu 12.04 LTS, /proc/sys/kernel/dmesg_restrict can be set to "1" to treat dmesg output as sensitive. Starting with 20.10, this is enabled by default.
 
+9. ### Linux Lockdown  
+    it was introduced in Linux kernel version 5.4.  
+_Modes_: The kernel lockdown feature operates in different modes, which determine the level of restriction applied:
+Integrity Mode: This mode focuses on preventing unauthorized modifications to the kernel. It restricts actions that could alter the kernel's code or data.
+Confidentiality Mode: In addition to the restrictions of integrity mode, this mode also prevents access to confidential information that could be used to compromise the system.  
+_Restrictions_: When the kernel lockdown feature is enabled, it imposes several restrictions, including:
+Disabling the ability to load unsigned kernel modules.
+Preventing access to kernel memory through interfaces like /dev/mem and /dev/kmem.
+Restricting access to certain kernel parameters and interfaces that could be used to modify kernel behavior.
+Blocking the use of certain debugging features that could be exploited by attackers.  
+   
 ## References:
 https://wiki.ubuntu.com/Security/Features/Historical
