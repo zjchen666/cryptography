@@ -12,3 +12,5 @@
    _-pie_ is used during the linking phase to create a position-independent executable from those object files.  
    _-fPIC_ is used to compile shared libraries (dynamic libraries) so that they can be loaded at any memory address.
 4. ### No debug flag (-g for GCC) when building software components
+5. ### static buffer checking
+     use -D_FORTIFY_SOURCE=2 for GCC.
