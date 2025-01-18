@@ -15,10 +15,9 @@
 5. ### static buffer checking
      use -D_FORTIFY_SOURCE=2 for GCC.
 6. ### Data execution prevention
-    modern Linux distributions typically make the stack non-executable by default. 
-    Kernel Support: The Linux kernel has supported non-executable stack protection for many years. This is often enabled by default in the kernel configuration of most 
+    modern Linux distributions typically make the stack non-executable by default.   
+    _Kernel Support_: The Linux kernel has supported non-executable stack protection for many years. This is often enabled by default in the kernel configuration of most 
     distributions.  
-    Executable and Linkable Format (ELF): When a program is compiled, the ELF headers can specify that the stack should be non-executable. This is often the default 
-    behavior unless explicitly overridden.  
-    Hardware Support: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. 
-    The Linux kernel uses this feature to enforce non-executable stack policies.  
+    _Executable and Linkable Format (ELF)_: When a program is compiled, the ELF headers can specify that the stack should be non-executable. This is often the default 
+    behavior unless explicitly overridden.  The "-z noexecstack" linker option modifies the ELF headers to include a note that the stack should be non-executable.  
+    _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.  
