@@ -1,4 +1,21 @@
 ## Linux Kernel Hardening
+7. ### Kernel Address Display Restriction
+When attackers try to develop "run anywhere" exploits for kernel vulnerabilities, they frequently need to know the location of internal kernel structures. By treating kernel addresses as sensitive information, those locations are not visible to regular local users. Starting with Ubuntu 11.04, /proc/sys/kernel/kptr_restrict is set to "1" to block the reporting of known kernel address leaks. Additionally, various files and directories were made readable only by the root user: /boot/vmlinuz*, /boot/System.map*, /sys/kernel/debug/, /proc/slabinfo
+ 
+8. ### Dmesg restrictions  
+When attackers try to develop "run anywhere" exploits for vulnerabilties, they frequently will use dmesg output. By treating dmesg output as sensitive information, this output is not available to the attacker. Starting with Ubuntu 12.04 LTS, /proc/sys/kernel/dmesg_restrict can be set to "1" to treat dmesg output as sensitive. Starting with 20.10, this is enabled by default.
+
+9. ### Linux Lockdown  
+    it was introduced in Linux kernel version 5.4.  
+_Modes_: The kernel lockdown feature operates in different modes, which determine the level of restriction applied:
+Integrity Mode: This mode focuses on preventing unauthorized modifications to the kernel. It restricts actions that could alter the kernel's code or data.
+Confidentiality Mode: In addition to the restrictions of integrity mode, this mode also prevents access to confidential information that could be used to compromise the system.  
+_Restrictions_: When the kernel lockdown feature is enabled, it imposes several restrictions, including:
+Disabling the ability to load unsigned kernel modules.
+Preventing access to kernel memory through interfaces like /dev/mem and /dev/kmem.
+Restricting access to certain kernel parameters and interfaces that could be used to modify kernel behavior.
+Blocking the use of certain debugging features that could be exploited by attackers.
+
 ## User Space Hardening
 1. ### The stack smash protection
    a. -fstack-protector-strong  
@@ -21,22 +38,7 @@
     _Executable and Linkable Format (ELF)_: When a program is compiled, the ELF headers can specify that the stack should be non-executable. This is often the default 
     behavior unless explicitly overridden.  The "-z noexecstack" linker option modifies the ELF headers to include a note that the stack should be non-executable.  
     _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.
-7. ### Kernel Address Display Restriction
-When attackers try to develop "run anywhere" exploits for kernel vulnerabilities, they frequently need to know the location of internal kernel structures. By treating kernel addresses as sensitive information, those locations are not visible to regular local users. Starting with Ubuntu 11.04, /proc/sys/kernel/kptr_restrict is set to "1" to block the reporting of known kernel address leaks. Additionally, various files and directories were made readable only by the root user: /boot/vmlinuz*, /boot/System.map*, /sys/kernel/debug/, /proc/slabinfo
- 
-8. ### Dmesg restrictions  
-When attackers try to develop "run anywhere" exploits for vulnerabilties, they frequently will use dmesg output. By treating dmesg output as sensitive information, this output is not available to the attacker. Starting with Ubuntu 12.04 LTS, /proc/sys/kernel/dmesg_restrict can be set to "1" to treat dmesg output as sensitive. Starting with 20.10, this is enabled by default.
 
-9. ### Linux Lockdown  
-    it was introduced in Linux kernel version 5.4.  
-_Modes_: The kernel lockdown feature operates in different modes, which determine the level of restriction applied:
-Integrity Mode: This mode focuses on preventing unauthorized modifications to the kernel. It restricts actions that could alter the kernel's code or data.
-Confidentiality Mode: In addition to the restrictions of integrity mode, this mode also prevents access to confidential information that could be used to compromise the system.  
-_Restrictions_: When the kernel lockdown feature is enabled, it imposes several restrictions, including:
-Disabling the ability to load unsigned kernel modules.
-Preventing access to kernel memory through interfaces like /dev/mem and /dev/kmem.
-Restricting access to certain kernel parameters and interfaces that could be used to modify kernel behavior.
-Blocking the use of certain debugging features that could be exploited by attackers.  
    
 ## References:
 https://wiki.ubuntu.com/Security/Features/Historical
