@@ -3,8 +3,9 @@
        kernel module loding must be disabled at runtime or must be authenticated.
 2. ### Kernel debug trace should be disabled
 3. ### Kernel Module Versioning
-     Rationale?
-4. ### Kernel stack smash protection
+     Rationale? Kernel Module Versioning helps prevent the loading of modules that were compiled for a different kernel version or configuration. This is important because kernel modules interact closely with the kernel, and mismatches can lead to system instability or crashes.  
+   
+5. ### Kernel stack smash protection
     is not enabled by default
 6. ### Disable Application Binary Interface compatibility modes
 7. ### Disable /dev/mem and /dev/kmem
