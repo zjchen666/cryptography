@@ -1,8 +1,22 @@
 ## Linux Kernel Hardening
 1. ### Kernel Module loading
-       kernel module loding must be disabled at runtime or must be authenticated.
-2. ### Kernel debug trace should be disabled
-3. ### Kernel Module Versioning
+       kernel module loding must be disabled at runtime or must be authenticated.  
+The CONFIG_MODULE_SIG and CONFIG_MODULE_SIG_FORCE are kernel configuration options related to module signing in the Linux kernel. They serve different purposes in the context of module signing:  
+CONFIG_MODULE_SIG  
+Purpose: This option enables the support for module signature verification in the kernel.  
+Functionality: When CONFIG_MODULE_SIG is enabled, the kernel is capable of verifying the signatures of kernel modules before loading them. This means that the kernel can check if a module has been signed with a valid key.  
+Flexibility: With this option enabled, unsigned modules can still be loaded if the signature verification fails, unless CONFIG_MODULE_SIG_FORCE is also enabled. This provides flexibility during development or in environments where not all modules are signed.  
+CONFIG_MODULE_SIG_FORCE  
+Purpose: This option enforces strict signature verification for all kernel modules.  
+Functionality: When CONFIG_MODULE_SIG_FORCE is enabled, the kernel will refuse to load any module that is not properly signed. This means that only modules with a valid signature will be accepted, and any unsigned or improperly signed modules will be rejected.  
+Security: This option is used to enhance security by ensuring that only trusted modules are loaded into the kernel. It is particularly useful in production environments where security is a priority.  
+Summary  
+CONFIG_MODULE_SIG: Enables the capability to verify module signatures. It allows for both signed and unsigned modules to be loaded, depending on the verification result.  
+CONFIG_MODULE_SIG_FORCE: Enforces that only signed modules can be loaded, providing a higher level of security by rejecting any unsigned or improperly signed modules.  
+In practice, if you want to ensure that only trusted modules are loaded into your kernel, you would enable both CONFIG_MODULE_SIG and CONFIG_MODULE_SIG_FORCE. This setup is particularly important in secure or production environments where the integrity and authenticity of kernel modules are critical.  
+
+3. ### Kernel debug trace should be disabled
+4. ### Kernel Module Versioning
      Rationale? Kernel Module Versioning helps prevent the loading of modules that were compiled for a different kernel version or configuration. This is important because kernel modules interact closely with the kernel, and mismatches can lead to system instability or crashes.  
    
 5. ### Kernel stack smash protection
