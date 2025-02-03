@@ -5,19 +5,20 @@
 3. ### Kernel Module Versioning
      Rationale?
 4. ### Kernel stack smash protection
-5. ### Disable Application Binary Interface compatibility modes
-6. ### Disable /dev/mem and /dev/kmem
+    is not enabled by default
+6. ### Disable Application Binary Interface compatibility modes
+7. ### Disable /dev/mem and /dev/kmem
     Rationale?
-7. ### debugfs and configfs Must be disabled
+8. ### debugfs and configfs Must be disabled
     Rationale?
-8. ### The static and dynamic object size bounds checking
-9. ### Kernel must never access user space memory
-10. ### Enable control flow integrity
-11. ### enable KASLR
-12. ### The kernel executable code and read-only data must not be writable.
+9. ### The static and dynamic object size bounds checking
+10. ### Kernel must never access user space memory
+11. ### Enable control flow integrity
+12. ### enable KASLR
+13. ### The kernel executable code and read-only data must not be writable.
      enable Kconfig options: CONFIG_STRICT_KERNEL_RWX and CONFIG_STRICT_MODULE_RWX
-13. ### Should Not use NFS  
-14. ### Kernel Address Display Restriction
+14. ### Should Not use NFS  
+15. ### Kernel Address Display Restriction
 When attackers try to develop "run anywhere" exploits for kernel vulnerabilities, they frequently need to know the location of internal kernel structures. By treating kernel addresses as sensitive information, those locations are not visible to regular local users. Starting with Ubuntu 11.04, /proc/sys/kernel/kptr_restrict is set to "1" to block the reporting of known kernel address leaks. Additionally, various files and directories were made readable only by the root user: /boot/vmlinuz*, /boot/System.map*, /sys/kernel/debug/, /proc/slabinfo
  
 15. ### Dmesg restrictions  
