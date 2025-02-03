@@ -1,13 +1,29 @@
 ## Linux Kernel Hardening
 1. ### Kernel Module loading
-    kernel module loding must be disabled at runtime or must be authenticated.  
-7. ### Kernel Address Display Restriction
+       kernel module loding must be disabled at runtime or must be authenticated.
+2. ### Kernel debug trace should be disabled
+3. ### Kernel Module Versioning
+     Rationale?
+4. ### Kernel stack smash protection
+5. ### Disable Application Binary Interface compatibility modes
+6. ### Disable /dev/mem and /dev/kmem
+    Rationale?
+7. ### debugfs and configfs Must be disabled
+    Rationale?
+8. ### The static and dynamic object size bounds checking
+9. ### Kernel must never access user space memory
+10. ### Enable control flow integrity
+11. ### enable KASLR
+12. ### The kernel executable code and read-only data must not be writable.
+     enable Kconfig options: CONFIG_STRICT_KERNEL_RWX and CONFIG_STRICT_MODULE_RWX
+13. ### Should Not use NFS  
+14. ### Kernel Address Display Restriction
 When attackers try to develop "run anywhere" exploits for kernel vulnerabilities, they frequently need to know the location of internal kernel structures. By treating kernel addresses as sensitive information, those locations are not visible to regular local users. Starting with Ubuntu 11.04, /proc/sys/kernel/kptr_restrict is set to "1" to block the reporting of known kernel address leaks. Additionally, various files and directories were made readable only by the root user: /boot/vmlinuz*, /boot/System.map*, /sys/kernel/debug/, /proc/slabinfo
  
-8. ### Dmesg restrictions  
+15. ### Dmesg restrictions  
 When attackers try to develop "run anywhere" exploits for vulnerabilties, they frequently will use dmesg output. By treating dmesg output as sensitive information, this output is not available to the attacker. Starting with Ubuntu 12.04 LTS, /proc/sys/kernel/dmesg_restrict can be set to "1" to treat dmesg output as sensitive. Starting with 20.10, this is enabled by default.
 
-9. ### Linux Lockdown  
+16. ### Linux Lockdown  
     it was introduced in Linux kernel version 5.4.  
 _Modes_: The kernel lockdown feature operates in different modes, which determine the level of restriction applied:
 Integrity Mode: This mode focuses on preventing unauthorized modifications to the kernel. It restricts actions that could alter the kernel's code or data.
