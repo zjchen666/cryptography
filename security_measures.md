@@ -21,17 +21,22 @@ Blocking the use of certain debugging features that could be exploited by attack
    a. -fstack-protector-strong  
    b. -fstack-protector-all  
 2. ### dynamic lib link options:
-   a.  add linker option -Wl, -z relro -Wl, -z now
-3. ### The Address Space Layout Randomization (ASLR)
+   add linker option -Wl, -z relro -Wl, -z now  
+   -Wl, -z relro:  
+This option enables "Read-Only Relocations" (RELRO). It is a security feature that makes certain sections of the program's memory read-only after they have been initialized. This helps prevent certain types of attacks, such as overwriting the Global Offset Table (GOT).  
+   -Wl, -z now:  
+This option forces the program to resolve all dynamic symbols at startup, rather than lazily resolving them as needed. This is known as "full RELRO" and enhances security by ensuring that the GOT is fully populated and then made read-only before the program starts executing. This prevents attackers from being able to overwrite GOT entries to redirect function calls.  
+
+4. ### The Address Space Layout Randomization (ASLR)
    kernel configuraton /proc/sys/kernel/randomize_va_space to 2  
    program should be built as Position Independent Code (PIC) with "-fPIE -pie".  
    _-fPIE_ is used during the compilation phase to generate position-independent code in object files.  
    _-pie_ is used during the linking phase to create a position-independent executable from those object files.  
    _-fPIC_ is used to compile shared libraries (dynamic libraries) so that they can be loaded at any memory address.
-4. ### No debug flag (-g for GCC) when building software components
-5. ### static buffer checking
+5. ### No debug flag (-g for GCC) when building software components
+6. ### static buffer checking
      use -D_FORTIFY_SOURCE=2 for GCC.
-6. ### Data execution prevention
+7. ### Data execution prevention
     modern Linux distributions typically make the stack non-executable by default.   
     _Kernel Support_: The Linux kernel has supported non-executable stack protection for many years. This is often enabled by default in the kernel configuration of most 
     distributions.  
