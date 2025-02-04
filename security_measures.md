@@ -79,6 +79,19 @@ This option forces the program to resolve all dynamic symbols at startup, rather
     _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.
 
 ## Isolation
+   ### Sandbox
+   Purpose: A sandbox is an isolated environment used to run applications or processes in a way that limits their access to the rest of the system. The primary goal is to contain any potential harm that a process might cause, such as executing malicious code or accessing sensitive data.
+Functionality: Sandboxes restrict the resources and permissions available to a process, often by using techniques like namespace isolation, resource limits, and restricted system calls (e.g., using Seccomp).    
+   Use Cases: Sandboxes are commonly used in web browsers, mobile applications (like Android apps), and virtual machines to provide a controlled execution environment.    
+   ### Mandatory Access Control (MAC)
+Purpose: MAC is a security model used to enforce strict access controls based on predefined policies. It determines how subjects (users or processes) can interact with objects (files, devices, etc.) in the system.    
+Functionality: MAC policies are centrally defined and enforced by the operating system, and they cannot be altered by individual users. This ensures that access controls are consistently applied across the system.    
+Examples: SELinux (Security-Enhanced Linux) and AppArmor are examples of MAC implementations that provide fine-grained access control based on security policies.    
+   ### Comparison
+Isolation vs. Control: A sandbox focuses on isolating a process to prevent it from affecting the rest of the system, while MAC focuses on controlling access to resources based on security policies.    
+Granularity: MAC provides more granular control over access permissions, allowing for detailed security policies that specify exactly what actions are permitted or denied.    
+Integration: Sandboxes can be implemented using MAC policies as part of their isolation strategy, but they are not limited to MAC. They may also use other mechanisms like virtualization or containerization.   
+In summary, while both sandboxes and MAC are used to enhance security, they are not equivalent. Sandboxes provide isolated environments for running applications, whereas MAC enforces access control policies across the system.   
    ### MAC (Mandatory Access Control), Selinux and Apparmor, doesn't directly manage user ID and groups.
    
 ## References:
