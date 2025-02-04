@@ -78,6 +78,8 @@ This option forces the program to resolve all dynamic symbols at startup, rather
     behavior unless explicitly overridden.  The "-z noexecstack" linker option modifies the ELF headers to include a note that the stack should be non-executable.  
     _Hardware Support_: Modern CPUs include a feature known as the NX (No Execute) bit, which allows the operating system to mark certain memory regions as non-executable. The Linux kernel uses this feature to enforce non-executable stack policies.
 
+## Isolation
+   ### MAC (Mandatory Access Control), Selinux and Apparmor, doesn't directly manage user ID and groups.
    
 ## References:
 https://wiki.ubuntu.com/Security/Features/Historical
